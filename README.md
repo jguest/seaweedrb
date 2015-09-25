@@ -20,13 +20,14 @@ Seaweed.connect host: "localhost", port: 9333
 # upload a file
 file = Seaweed.upload "/path/to/test.txt"
 
-# file info
+# file methods
+file.id         # => "1,01766888e0"
 file.pretty_url # => "http://localhost:8080/1/01766888e0/test.txt"
 file.url        # => "http://localhost:8080/1,01766888e0"
 file.read       # => "hello world!"
+file.name       # => "test.txt"
+file.delete!    # => true
 
-# find a file and delete it
+# find a file by id
 file = Seaweed.find "1,01766888e0"
-file.read    # => "hello world!"
-file.delete! # => true
 ```
