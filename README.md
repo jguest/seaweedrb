@@ -2,6 +2,8 @@
 
 a [seaweed-fs](https://github.com/chrislusf/seaweedfs) ruby client
 
+[![Gem Version](https://badge.fury.io/rb/seaweedrb.svg)](http://badge.fury.io/rb/seaweedrb)
+
 ### Getting Started
 
 Run `gem install seaweedrb` or include it in your project's Gemfile.
