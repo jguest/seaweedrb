@@ -3,6 +3,7 @@
 a [seaweed-fs](https://github.com/chrislusf/seaweedfs) ruby client
 
 [![Gem Version](https://badge.fury.io/rb/seaweedrb.svg)](http://badge.fury.io/rb/seaweedrb)
+[![Build Status](https://travis-ci.org/jguest/seaweedrb.svg?branch=master)](https://travis-ci.org/jguest/seaweedrb)
 
 ### getting started
 
