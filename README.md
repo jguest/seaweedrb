@@ -4,7 +4,7 @@ a [seaweed-fs](https://github.com/chrislusf/seaweedfs) ruby client
 
 [![Gem Version](https://badge.fury.io/rb/seaweedrb.svg)](http://badge.fury.io/rb/seaweedrb)
 
-### Getting Started
+### getting started
 
 Run `gem install seaweedrb` or include it in your project's Gemfile.
 
@@ -13,7 +13,7 @@ require 'seaweed'
 Seaweed.connect host: "localhost", port: 9333
 ```
 
-### Operations
+### operations
 
 ```ruby
 # upload a file

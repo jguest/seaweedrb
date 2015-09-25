@@ -1,6 +1,7 @@
 module Seaweed
 
-  def self.connect(host: "localhost", port: 9333)
+  def self.connect(host: "localhost", port: 9333, http_options: {})
+    Seaweed::HTTP.configure http_options
     Seaweed::Master.connect host: host, port: port
   end
 
@@ -14,21 +15,12 @@ module Seaweed
     file.upload!
   end
 
-  def self.find(fid)
+  def self.find(fid, http_options: nil)
     location = Seaweed::Master.dir_lookup fid.split(",")[0]
-    file = Seaweed::File.new fid, volume_url: location[:url]
-  end
-
-  require 'rest-client'
-  module Client
-    def parse(response)
-      if response.code.between?(200, 300)
-        return JSON.parse response, symbolize_names: true unless block_given?
-        yield
-      end
-    end
+    Seaweed::File.new fid, volume_url: location[:url]
   end
 end
 
+require 'seaweed/http'
 require 'seaweed/master'
 require 'seaweed/file'

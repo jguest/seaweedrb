@@ -1,28 +1,28 @@
 class Seaweed::Master
-  extend Seaweed::Client
   class << self
 
     def connect(host: "localhost", port: 9333)
-      @host = host
-      @port = port
-      @base_url = "http://#{@host}:#{@port}"
+      @base_url = "http://#{host}:#{port}"
     end
 
     def status
-      RestClient.get "#{@base_url}/cluster/status?pretty=y"
+      res = Seaweed::HTTP.get "#{@base_url}/cluster/status?pretty=y"
+      Seaweed::HTTP.parse res
     end
 
     def dir_assign!
-      parse RestClient.post "#{@base_url}/dir/assign", {}
+      res = Seaweed::HTTP.post "#{@base_url}/dir/assign", {}
+      Seaweed::HTTP.parse res
     end
 
     def dir_lookup(volume_id)
-      data = parse RestClient.get("#{@base_url}/dir/lookup?volumeId=#{volume_id}")
-      data[:locations][0]
+      res = Seaweed::HTTP.get "#{@base_url}/dir/lookup?volumeId=#{volume_id}"
+      Seaweed::HTTP.parse(res)[:locations][0]
     end
 
     def vaccum!(threshold: 0.3)
-      parse RestClient.get "#{@base_url}/vol/vaccum?garbageThreshold=#{threshold}"
+      res = Seaweed::HTTP.get "#{@base_url}/vol/vaccum?garbageThreshold=#{threshold}"
+      Seaweed::HTTP.parse res
     end
   end
 end

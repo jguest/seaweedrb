@@ -1,5 +1,4 @@
 class Seaweed::File
-  include Seaweed::Client
 
   attr_reader :id, :name, :volume_id, :volume_url, :attachment, :size
 
@@ -11,19 +10,20 @@ class Seaweed::File
   end
 
   def upload!
-    response = parse RestClient.put(url, file: File.new(@attachment, 'rb'))
-    @name = response[:name]
-    @size = response[:size]
+    response = Seaweed::HTTP.put url, file: File.new(@attachment, 'rb')
+    data = Seaweed::HTTP.parse response
+    @name = data[:name]
+    @size = data[:size]
     self
   end
 
   def delete!
-    response = parse RestClient.delete(url)
-    !response[:size].nil?
+    res = Seaweed::HTTP.delete url
+    !(Seaweed::HTTP.parse(res)[:size].nil?)
   end
 
   def read
-    RestClient.get url
+    Seaweed::HTTP.get url
   end
 
   def url
