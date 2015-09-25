@@ -26,8 +26,8 @@ file.pretty_url # => "http://localhost:8080/1/01766888e0/test.txt"
 file.url        # => "http://localhost:8080/1,01766888e0"
 file.read       # => "hello world!"
 file.name       # => "test.txt"
-file.delete!    # => true
 
-# find a file by id
+# find a file and delete it
 file = Seaweed.find "1,01766888e0"
+file.delete!
 ```
