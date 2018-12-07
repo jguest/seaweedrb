@@ -19,7 +19,7 @@ class Seaweed::File
 
   def initialize(fid, volume_url: nil, attachment: nil)
     @id = fid
-    @volume_id, @key, @cookie = fid.match(/^(\d),(\w\w)(\w+)$/).captures
+    @volume_id, @key, @cookie = fid.match(/^(\d+),(\w\w)(\w+)$/).captures
     @volume_url = volume_url
     @attachment = attachment
   end
